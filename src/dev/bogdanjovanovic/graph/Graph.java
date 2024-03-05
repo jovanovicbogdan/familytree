@@ -56,7 +56,7 @@ public class Graph {
     final Vertex mostarStation = busNetwork.addVertex("Mostar");
     final Vertex banovoBrdoStation = busNetwork.addVertex("Banovo Brdo");
 
-    // "edge" represents number of bus stops between each station
+    // "weight" represents number of bus stops between each station
     busNetwork.addEdge(noviBeogradStation, mostarStation, 3);
     busNetwork.addEdge(mostarStation, banovoBrdoStation, 5);
 
