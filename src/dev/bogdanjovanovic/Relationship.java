@@ -2,23 +2,23 @@ package dev.bogdanjovanovic;
 
 public class Relationship {
 
-  private final FamilyMember firstFamilyMember;
-  private final FamilyMember secondFamilyMember;
+  private final FamilyMember fromFamilyMember;
+  private final FamilyMember toFamilyMember;
   private final RelationshipType relationshipType;
 
-  public Relationship(final FamilyMember firstFamilyMember, final FamilyMember secondFamilyMember,
+  public Relationship(final FamilyMember fromFamilyMember, final FamilyMember toFamilyMember,
       final RelationshipType relationshipType) {
-    this.firstFamilyMember = firstFamilyMember;
-    this.secondFamilyMember = secondFamilyMember;
+    this.fromFamilyMember = fromFamilyMember;
+    this.toFamilyMember = toFamilyMember;
     this.relationshipType = relationshipType;
   }
 
-  public FamilyMember getFirstFamilyMember() {
-    return firstFamilyMember;
+  public FamilyMember getFromFamilyMember() {
+    return fromFamilyMember;
   }
 
-  public FamilyMember getSecondFamilyMember() {
-    return secondFamilyMember;
+  public FamilyMember getToFamilyMember() {
+    return toFamilyMember;
   }
 
   public RelationshipType getRelationshipType() {

@@ -1,11 +1,22 @@
 package dev.bogdanjovanovic;
 
 public enum RelationshipType {
-  MOTHER,
-  FATHER,
-  SON,
-  DAUGHTER,
-  WIFE,
-  HUSBAND,
-  EXTRAMARITAL_PARTNER,
+  MOTHER("mother"),
+  FATHER("father"),
+  SON("son"),
+  DAUGHTER("daughter"),
+  WIFE("wife"),
+  HUSBAND("husband"),
+  EXTRAMARITAL_PARTNER("extramarital partner");
+
+  private final String name;
+
+  RelationshipType(final String name) {
+    this.name = name;
+  }
+
+  public String getName() {
+    return name;
+  }
+
 }

@@ -13,9 +13,9 @@ public class FamilyMember {
     this.relationships = new ArrayList<>();
   }
 
-  public void addRelationship(final FamilyMember secondFamilyPerson,
+  public void addRelationship(final FamilyMember toFamilyMember,
       final RelationshipType relationshipType) {
-    this.relationships.add(new Relationship(this, secondFamilyPerson, relationshipType));
+    this.relationships.add(new Relationship(this, toFamilyMember, relationshipType));
   }
 
   public Person getPerson() {
@@ -28,9 +28,9 @@ public class FamilyMember {
 
     for (final Relationship relationship : this.relationships) {
       message
-          .append(relationship.getFirstFamilyMember().getPerson().forename())
+          .append(relationship.getFromFamilyMember().getPerson().forename())
           .append(" ")
-          .append(relationship.getFirstFamilyMember().getPerson().surname())
+          .append(relationship.getFromFamilyMember().getPerson().surname())
           .append(" ==> ");
 
       message
@@ -40,9 +40,9 @@ public class FamilyMember {
 
       message
           .append(" ==> ")
-          .append(relationship.getSecondFamilyMember().getPerson().forename())
+          .append(relationship.getToFamilyMember().getPerson().forename())
           .append(" ")
-          .append(relationship.getSecondFamilyMember().getPerson().surname());
+          .append(relationship.getToFamilyMember().getPerson().surname());
     }
 
     return message.toString();

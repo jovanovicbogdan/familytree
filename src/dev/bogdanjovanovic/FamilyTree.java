@@ -19,11 +19,11 @@ public class FamilyTree {
     return familyMember;
   }
 
-  public void addRelationship(final FamilyMember firstFamilyMember,
-      final FamilyMember secondFamilyMember, final RelationshipType relationshipType) {
-    firstFamilyMember.addRelationship(secondFamilyMember, relationshipType);
+  public void addRelationship(final FamilyMember fromFamilyMember,
+      final FamilyMember toFamilyMember, final RelationshipType relationshipType) {
+    fromFamilyMember.addRelationship(toFamilyMember, relationshipType);
 
-    switch(relationshipType) {
+    switch (relationshipType) {
       case SON -> {
         // check if there is a "HUSBAND" or "WIFE" relationship relatively to the person who
         // is entering a new family member. If it does ask user to confirm relationship between
@@ -46,24 +46,6 @@ public class FamilyTree {
     for (final FamilyMember familyMember : this.familyMembers) {
       System.out.println(familyMember.toString());
     }
-  }
-
-  public static void main(final String[] args) {
-//    final FamilyTree bogdansFamilyTree = new FamilyTree();
-//
-//    final FamilyMember bogdan = bogdansFamilyTree.addFamilyMember(new Person("Bogdan", "Jovanovic", 25));
-//    final FamilyMember mirjana = bogdansFamilyTree.addFamilyMember(new Person("Mirjana", "Nikolic", 53));
-//
-//    bogdansFamilyTree.addRelationship(bogdan, mirjana, RelationshipType.SON);
-//    bogdansFamilyTree.addRelationship(mirjana, bogdan, RelationshipType.MOTHER);
-//
-//    bogdansFamilyTree.printFamilyTree();
-
-    final Scanner scanner = new Scanner(System.in);
-    System.out.print("Choose an option: ");
-    final int chosenOption = scanner.nextInt();
-    System.out.println("You have chosen: " + chosenOption);
-    scanner.close();
   }
 
 }
