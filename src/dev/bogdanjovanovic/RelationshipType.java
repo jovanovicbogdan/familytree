@@ -5,4 +5,7 @@ public enum RelationshipType {
   FATHER,
   SON,
   DAUGHTER,
+  WIFE,
+  HUSBAND,
+  EXTRAMARITAL_PARTNER,
 }
