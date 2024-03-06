@@ -8,9 +8,8 @@ public class PromptUser {
   private final Scanner scanner;
   private Map<Integer, String> options;
 
-  public PromptUser(final Scanner scanner, final Map<Integer, String> options) {
+  public PromptUser(final Scanner scanner) {
     this.scanner = scanner;
-    this.options = options;
   }
 
   public void setOptions(final Map<Integer, String> options) {
@@ -18,8 +17,26 @@ public class PromptUser {
   }
 
   public int prompt() {
-    printOptions();
-    return scanner.nextInt();
+    while (true) {
+      try {
+        printOptions();
+        final int chosenOption = scanner.nextInt();
+        // read new line character
+        scanner.nextLine();
+
+        if (!options.containsKey(chosenOption)) {
+          System.out.println("Please select a number between 1 and " + options.size());
+          continue;
+        }
+
+        System.out.println(
+            "You have chosen \"" + chosenOption + ". " + options.get(chosenOption) + "\"");
+
+        return chosenOption;
+      } catch (Exception ex) {
+        throw new IllegalArgumentException(ex.getMessage());
+      }
+    }
   }
 
   private void printOptions() {

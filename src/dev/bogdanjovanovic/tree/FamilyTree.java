@@ -1,8 +1,8 @@
-package dev.bogdanjovanovic;
+package dev.bogdanjovanovic.tree;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+import java.util.Optional;
 
 public class FamilyTree {
 
@@ -40,6 +40,13 @@ public class FamilyTree {
         System.exit(1);
       }
     }
+  }
+
+  public Optional<FamilyMember> getFamilyMemberByPersonId(final int personId) {
+    return this.familyMembers
+        .stream()
+        .filter(familyMember -> familyMember.getPerson().getPersonId() == personId)
+        .findFirst();
   }
 
   public void printFamilyTree() {

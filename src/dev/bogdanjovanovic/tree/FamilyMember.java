@@ -1,4 +1,4 @@
-package dev.bogdanjovanovic;
+package dev.bogdanjovanovic.tree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,9 +28,9 @@ public class FamilyMember {
 
     for (final Relationship relationship : this.relationships) {
       message
-          .append(relationship.getFromFamilyMember().getPerson().forename())
+          .append(relationship.getFromFamilyMember().getPerson().getForename())
           .append(" ")
-          .append(relationship.getFromFamilyMember().getPerson().surname())
+          .append(relationship.getFromFamilyMember().getPerson().getSurname())
           .append(" ==> ");
 
       message
@@ -40,9 +40,9 @@ public class FamilyMember {
 
       message
           .append(" ==> ")
-          .append(relationship.getToFamilyMember().getPerson().forename())
+          .append(relationship.getToFamilyMember().getPerson().getForename())
           .append(" ")
-          .append(relationship.getToFamilyMember().getPerson().surname());
+          .append(relationship.getToFamilyMember().getPerson().getSurname());
     }
 
     return message.toString();

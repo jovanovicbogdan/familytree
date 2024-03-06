@@ -1,6 +1,9 @@
 package dev.bogdanjovanovic;
 
-import dev.bogdanjovanovic.options.CreateOrUpdateFamilyMemberOptionProcessor;
+import dev.bogdanjovanovic.options.handlers.CreateOrUpdateFamilyMemberOptionHandler;
+import dev.bogdanjovanovic.tree.FamilyMember;
+import dev.bogdanjovanovic.tree.FamilyTree;
+import dev.bogdanjovanovic.tree.Person;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -8,9 +11,9 @@ import java.util.Scanner;
 public class Main {
 
   public static void main(String[] args) {
-//    final FamilyTree bogdansFamilyTree = new FamilyTree();
+    final FamilyTree familyTree = new FamilyTree();
 //
-//    final FamilyMember bogdan = bogdansFamilyTree.addFamilyMember(new Person("Bogdan", "Jovanovic", 25));
+    final FamilyMember me = familyTree.addFamilyMember(new Person(1, "me", "", null));
 //    final FamilyMember mirjana = bogdansFamilyTree.addFamilyMember(new Person("Mirjana", "Nikolic", 53));
 //
 //    bogdansFamilyTree.addRelationship(bogdan, mirjana, RelationshipType.SON);
@@ -27,34 +30,26 @@ public class Main {
     startingOptions.put(4, "Show family tree loaded into memory");
     startingOptions.put(5, "Close the program");
 
-    final PromptUser promptUser = new PromptUser(scanner, startingOptions);
+    final PromptUser promptUser = new PromptUser(scanner);
 
     int chosenOption;
     while (true) {
       try {
+        promptUser.setOptions(startingOptions);
         chosenOption = promptUser.prompt();
 
-        if (!startingOptions.containsKey(chosenOption)) {
-          System.out.println("Please select a number between 1 and " + startingOptions.size());
-          continue;
-        }
-
-        System.out.println(
-            "You have chosen \"" + chosenOption + ". " + startingOptions.get(chosenOption) + "\"");
-
         if (chosenOption == 3) {
-          final CreateOrUpdateFamilyMemberOptionProcessor createOrUpdateFamilyMemberOptionProcessor = new CreateOrUpdateFamilyMemberOptionProcessor(
-              scanner, promptUser);
-          createOrUpdateFamilyMemberOptionProcessor.process();
+          final CreateOrUpdateFamilyMemberOptionHandler createOrUpdateFamilyMemberOptionHandler = new CreateOrUpdateFamilyMemberOptionHandler(
+              scanner, familyTree, promptUser);
+          createOrUpdateFamilyMemberOptionHandler.handle();
         }
 
         if (chosenOption == 5) {
           break;
         }
       } catch (Exception ex) {
-        System.out.println("Invalid input");
         scanner.close();
-        System.exit(1);
+        throw new IllegalArgumentException(ex.getMessage());
       }
     }
 

@@ -1,4 +1,4 @@
-package dev.bogdanjovanovic;
+package dev.bogdanjovanovic.tree;
 
 public enum RelationshipType {
   MOTHER("mother"),
