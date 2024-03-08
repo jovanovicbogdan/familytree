@@ -31,6 +31,7 @@ public class PromptUser {
 
         System.out.println(
             "You have chosen \"" + chosenOption + " " + options.get(chosenOption) + "\"");
+        System.out.println();
 
         return chosenOption;
       } catch (Exception ex) {

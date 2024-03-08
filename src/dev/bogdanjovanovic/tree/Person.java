@@ -1,15 +1,21 @@
 package dev.bogdanjovanovic.tree;
 
+import dev.bogdanjovanovic.IdGenerator;
+
 public class Person {
 
-  private final int personId;
+  private int personId;
   private String forename;
   private String surname;
   private Gender gender;
 
-  public Person(final int personId, final String forename, final String surname,
+  public Person() {
+    this.personId = IdGenerator.nextId();
+  }
+
+  public Person(final String forename, final String surname,
       final Gender gender) {
-    this.personId = personId;
+    this.personId = IdGenerator.nextId();
     this.forename = forename;
     this.surname = surname;
     this.gender = gender;
@@ -41,6 +47,19 @@ public class Person {
 
   public void setGender(final Gender gender) {
     this.gender = gender;
+  }
+
+  public String getFullName() {
+//    if (forename == null) {
+//      return surname;
+//    }
+//    if (surname == null) {
+//      return forename;
+//    }
+//    if (forename == null && surname == null) {
+//      return "";
+//    }
+    return forename + " " + surname;
   }
 
   @Override

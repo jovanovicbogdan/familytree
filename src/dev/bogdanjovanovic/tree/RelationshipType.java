@@ -6,6 +6,7 @@ public enum RelationshipType {
   FATHER("Father"),
   MOTHER("Mother"),
   SPOUSE("Spouse"),
+//  EX_SPOUSE("Ex-Spouse"),
   UNMARRIED_PARTNER("Unmarried partner");
 
   private final String name;

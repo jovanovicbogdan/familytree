@@ -74,8 +74,10 @@ public class UpdateFamilyMemberService {
       System.out.println(formatted);
 
       System.out.print("Save (Y/n): ");
-      final String save = scanner.nextLine();
-      if (save.isEmpty() || save.equals("y") || save.equals("Y")) {
+      final String save = scanner.nextLine().toLowerCase();
+      if (save.equals("n") || save.equals("no")) {
+        System.out.println("Changes discarded");
+      } else {
         System.out.println("Saving...");
 
         if (!forename.isEmpty()) {
@@ -89,8 +91,6 @@ public class UpdateFamilyMemberService {
         if (!gender.isEmpty()) {
           person.setGender(Gender.valueOf(gender.toUpperCase()));
         }
-      } else {
-        System.out.println("Changes discarded");
       }
     } catch (Exception ex) {
       throw new IllegalArgumentException(ex.getMessage());

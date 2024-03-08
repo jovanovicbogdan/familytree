@@ -16,6 +16,13 @@ public class FamilyMember {
   public void addRelationship(final FamilyMember toFamilyMember,
       final RelationshipType relationshipType) {
     this.relationships.add(new Relationship(this, toFamilyMember, relationshipType));
+    System.out.println(
+        "New relation between \"" + this.getPerson().getPersonId() + " "
+            + this.getPerson()
+            .getFullName() + "\" and \"" + toFamilyMember.getPerson().getPersonId() + " "
+            + toFamilyMember.getPerson().getFullName() + "\" as a \""
+            + relationshipType.getName()
+            + "\" has been created.");
   }
 
   public Person getPerson() {

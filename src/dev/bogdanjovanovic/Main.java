@@ -3,6 +3,7 @@ package dev.bogdanjovanovic;
 import dev.bogdanjovanovic.options.handlers.CreateOrUpdateFamilyMemberOptionHandler;
 import dev.bogdanjovanovic.tree.FamilyMember;
 import dev.bogdanjovanovic.tree.FamilyTree;
+import dev.bogdanjovanovic.tree.Gender;
 import dev.bogdanjovanovic.tree.Person;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,14 +13,9 @@ public class Main {
 
   public static void main(String[] args) {
     final FamilyTree familyTree = new FamilyTree();
-//
-    final FamilyMember me = familyTree.addFamilyMember(new Person(1, "me", "", null));
-//    final FamilyMember mirjana = bogdansFamilyTree.addFamilyMember(new Person("Mirjana", "Nikolic", 53));
-//
-//    bogdansFamilyTree.addRelationship(bogdan, mirjana, RelationshipType.SON);
-//    bogdansFamilyTree.addRelationship(mirjana, bogdan, RelationshipType.MOTHER);
-//
-//    bogdansFamilyTree.printFamilyTree();
+    final Person person = new Person("Bogdan", "Jovanović", Gender.MALE);
+    final FamilyMember familyMember = new FamilyMember(person);
+    familyTree.addFamilyMember(familyMember);
 
     final Scanner scanner = new Scanner(System.in);
 
