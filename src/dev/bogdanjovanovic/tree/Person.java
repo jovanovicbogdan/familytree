@@ -1,12 +1,14 @@
 package dev.bogdanjovanovic.tree;
 
 public class Person {
+
   private final int personId;
   private String forename;
   private String surname;
   private Gender gender;
 
-  public Person(final int personId, final String forename, final String surname, final Gender gender) {
+  public Person(final int personId, final String forename, final String surname,
+      final Gender gender) {
     this.personId = personId;
     this.forename = forename;
     this.surname = surname;
@@ -39,21 +41,6 @@ public class Person {
 
   public void setGender(final Gender gender) {
     this.gender = gender;
-  }
-
-  public void printPerson(final Person person) {
-    final String formatted = """
-        %-10s %d
-        %-10s %s
-        %-10s %s
-        %-10s %s
-        """.formatted(
-            "Person ID:", person.getPersonId(),
-        "Forename:", person.getForename(),
-        "Surname:", person.getSurname(),
-        "Gender:", person.getGender()
-    );
-    System.out.println(formatted);
   }
 
   @Override

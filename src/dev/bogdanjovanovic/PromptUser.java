@@ -30,7 +30,7 @@ public class PromptUser {
         }
 
         System.out.println(
-            "You have chosen \"" + chosenOption + ". " + options.get(chosenOption) + "\"");
+            "You have chosen \"" + chosenOption + " " + options.get(chosenOption) + "\"");
 
         return chosenOption;
       } catch (Exception ex) {
@@ -40,7 +40,7 @@ public class PromptUser {
   }
 
   private void printOptions() {
-    options.forEach((key, value) -> System.out.println(key + ". " + value));
+    options.forEach((key, value) -> System.out.println(key + " " + value));
     System.out.println();
     System.out.print("Choose an option (enter number between 1 and " + this.options.size() + "): ");
   }

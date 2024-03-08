@@ -19,28 +19,28 @@ public class FamilyTree {
     return familyMember;
   }
 
-  public void addRelationship(final FamilyMember fromFamilyMember,
-      final FamilyMember toFamilyMember, final RelationshipType relationshipType) {
-    fromFamilyMember.addRelationship(toFamilyMember, relationshipType);
-
-    switch (relationshipType) {
-      case SON -> {
-        // check if there is a "HUSBAND" or "WIFE" relationship relatively to the person who
-        // is entering a new family member. If it does ask user to confirm relationship between
-        // found person and the family member being entered otherwise create new family member
-        // with the opposite relationship.
-        break;
-      }
-      case WIFE -> {
-        // add new FamilyMember with WIFE Relationship
-        break;
-      }
-      default -> {
-        System.out.println("Relationship not supported.");
-        System.exit(1);
-      }
-    }
-  }
+//  public void addRelationship(final FamilyMember fromFamilyMember,
+//      final FamilyMember toFamilyMember, final RelationshipType relationshipType) {
+//    fromFamilyMember.addRelationship(toFamilyMember, relationshipType);
+//
+//    switch (relationshipType) {
+//      case SON -> {
+//        // check if there is a "HUSBAND" or "WIFE" relationship relatively to the person who
+//        // is entering a new family member. If it does ask user to confirm relationship between
+//        // found person and the family member being entered otherwise create new family member
+//        // with the opposite relationship.
+//        break;
+//      }
+//      case WIFE -> {
+//        // add new FamilyMember with WIFE Relationship
+//        break;
+//      }
+//      default -> {
+//        System.out.println("Relationship not supported.");
+//        System.exit(1);
+//      }
+//    }
+//  }
 
   public Optional<FamilyMember> getFamilyMemberByPersonId(final int personId) {
     return this.familyMembers

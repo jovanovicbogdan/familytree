@@ -17,7 +17,7 @@ public class UpdateFamilyMemberService {
     this.familyTree = familyTree;
   }
 
-  public void updatePerson() {
+  public void updateFamilyMember() {
     try {
       System.out.print("Please enter person id you want to update: ");
       int personId = scanner.nextInt();
@@ -29,13 +29,13 @@ public class UpdateFamilyMemberService {
       System.out.println(
           "You have chosen person with ID " + personId + ": " + familyMember.getPerson()
               .getForename() + " " + familyMember.getPerson().getSurname());
-      updatePersonData(familyMember.getPerson());
+      updateFamilyMemberData(familyMember.getPerson());
     } catch (Exception ex) {
       throw new IllegalArgumentException(ex.getMessage());
     }
   }
 
-  private void updatePersonData(final Person person) {
+  private void updateFamilyMemberData(final Person person) {
     try {
       System.out.print(
           "Enter new forename or press enter to remain the same [\"" + person.getForename()

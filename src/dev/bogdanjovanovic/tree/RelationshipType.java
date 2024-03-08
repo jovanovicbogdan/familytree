@@ -1,13 +1,12 @@
 package dev.bogdanjovanovic.tree;
 
 public enum RelationshipType {
-  MOTHER("mother"),
-  FATHER("father"),
-  SON("son"),
-  DAUGHTER("daughter"),
-  WIFE("wife"),
-  HUSBAND("husband"),
-  EXTRAMARITAL_PARTNER("extramarital partner");
+  SON("Son"),
+  DAUGHTER("Daughter"),
+  FATHER("Father"),
+  MOTHER("Mother"),
+  SPOUSE("Spouse"),
+  UNMARRIED_PARTNER("Unmarried partner");
 
   private final String name;
 

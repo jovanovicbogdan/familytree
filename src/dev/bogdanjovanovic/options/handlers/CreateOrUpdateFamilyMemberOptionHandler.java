@@ -1,6 +1,7 @@
 package dev.bogdanjovanovic.options.handlers;
 
 import dev.bogdanjovanovic.PromptUser;
+import dev.bogdanjovanovic.options.services.CreateFamilyMemberService;
 import dev.bogdanjovanovic.options.services.UpdateFamilyMemberService;
 import dev.bogdanjovanovic.tree.FamilyTree;
 import java.util.HashMap;
@@ -34,16 +35,15 @@ public class CreateOrUpdateFamilyMemberOptionHandler {
       final UpdateFamilyMemberService updateFamilyMemberService = new UpdateFamilyMemberService(
           scanner, familyTree
       );
-      updateFamilyMemberService.updatePerson();
+      updateFamilyMemberService.updateFamilyMember();
     }
 
     if (chosenOption == 2) {
       // create new person relatively to selected/entered personId
-      createPerson();
+      final CreateFamilyMemberService createFamilyMemberService = new CreateFamilyMemberService(
+          scanner, familyTree, promptUser
+      );
+      createFamilyMemberService.createFamilyMember();
     }
-  }
-
-  private void createPerson() {
-    System.out.print("Enter the ID of the person relative to which you are adding a new person: ");
   }
 }

@@ -22,6 +22,10 @@ public class FamilyMember {
     return person;
   }
 
+  public List<Relationship> getRelationships() {
+    return relationships;
+  }
+
   @Override
   public String toString() {
     final StringBuilder message = new StringBuilder();
