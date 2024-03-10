@@ -41,12 +41,16 @@ public class Main {
           createOrUpdateFamilyMemberOptionHandler.handle();
         }
 
+        if (chosenOption == 4) {
+          familyTree.printFamilyTree();
+        }
+
         if (chosenOption == 5) {
           break;
         }
       } catch (Exception ex) {
         scanner.close();
-        throw new IllegalArgumentException(ex.getMessage());
+        throw new RuntimeException(ex.getMessage());
       }
     }
 

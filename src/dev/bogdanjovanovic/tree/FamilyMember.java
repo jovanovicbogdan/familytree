@@ -54,9 +54,10 @@ public class FamilyMember {
           .append(relationship.getToFamilyMember().getPerson().getForename())
           .append(" ")
           .append(relationship.getToFamilyMember().getPerson().getSurname());
+
+      message.append("\n");
     }
 
     return message.toString();
   }
-
 }

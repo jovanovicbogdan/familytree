@@ -54,12 +54,11 @@ public class CreateFamilyMemberService {
 
       if (relationshipForEntry.equals(RelationshipType.SON) || relationshipForEntry.equals(
           RelationshipType.DAUGHTER)) {
-         createChild(me, relationshipForEntry);
+        createChild(me, relationshipForEntry);
       }
 
       if (relationshipForEntry.equals(RelationshipType.SPOUSE) || relationshipForEntry.equals(
-          RelationshipType.UNMARRIED_PARTNER) || relationshipForEntry.equals(
-          RelationshipType.EX)) {
+          RelationshipType.UNMARRIED_PARTNER)) {
         createPartner(me, relationshipForEntry);
       }
 
@@ -95,13 +94,10 @@ public class CreateFamilyMemberService {
     }
 
     if (!relationshipTypes.contains(RelationshipType.SPOUSE) || !relationshipTypes.contains(
-        RelationshipType.UNMARRIED_PARTNER) || !relationshipTypes.contains(
-        RelationshipType.EX)) {
+        RelationshipType.UNMARRIED_PARTNER)) {
       options.put(optionCounter, RelationshipType.SPOUSE.getName());
       optionCounter++;
       options.put(optionCounter, RelationshipType.UNMARRIED_PARTNER.getName());
-      optionCounter++;
-      options.put(optionCounter, RelationshipType.EX.getName());
     }
 
     return options;
@@ -146,19 +142,23 @@ public class CreateFamilyMemberService {
           .orElseThrow(() -> new RuntimeException("Parent not found."))
           .getToFamilyMember();
 
-      System.out.println(
-          "Relation found between you and \"" + parent.getPerson().getPersonId() + " "
-              + parent.getPerson().getFullName() + "\" as a " + "\"" + parent + "\".");
-
       final Optional<Relationship> maybePotentialSecondParent = parent.getRelationships()
           .stream()
           .filter(relationship -> relationship.getRelationshipType().equals(RelationshipType.SPOUSE)
-              || relationship.getRelationshipType().equals(RelationshipType.UNMARRIED_PARTNER)
-              || relationship.getRelationshipType().equals(RelationshipType.EX))
+              || relationship.getRelationshipType().equals(RelationshipType.UNMARRIED_PARTNER))
           .findFirst();
       if (maybePotentialSecondParent.isPresent()) {
         final Relationship potentialSecondParent = maybePotentialSecondParent.get();
         final FamilyMember firstParentsSpouseOrPartner = potentialSecondParent.getToFamilyMember();
+
+        System.out.println(
+            "Relationship found between \"" + firstParentsSpouseOrPartner.getPerson().getPersonId()
+                + " " + firstParentsSpouseOrPartner.getPerson().getFullName() + "\" and \""
+                + parent.getPerson()
+                .getPersonId() + " "
+                + parent.getPerson().getFullName() + "\" as a " + "\""
+                + potentialSecondParent.getRelationshipType().getName()
+                + "\".");
 
         System.out.println(
             "Please choose a relation between you and \"" + firstParentsSpouseOrPartner.getPerson()
@@ -173,21 +173,21 @@ public class CreateFamilyMemberService {
         int chosenOption = promptUser.prompt();
 
         if (chosenOption == 1) {
-          me.addRelationship(parent, relationshipTypeForEntry);
+          me.addRelationship(firstParentsSpouseOrPartner, relationshipTypeForEntry);
 
           final RelationshipType childRelationshipType = getChildRelationshipType(
               me.getPerson().getGender());
-          parent.addRelationship(me, childRelationshipType);
+          firstParentsSpouseOrPartner.addRelationship(me, childRelationshipType);
         }
 
         if (chosenOption == 2) {
-          createSingleParent(me, parent, relationshipTypeForEntry);
+          createSingleParent(me, relationshipTypeForEntry);
         }
       }
     }
   }
 
-  private void createSingleParent(final FamilyMember me, final FamilyMember parent,
+  private void createSingleParent(final FamilyMember me,
       final RelationshipType relationshipTypeForEntry) {
     final Optional<FamilyMember> maybeNewFamilyMember = addNewPersonToFamilyTree(
         relationshipTypeForEntry);
@@ -201,23 +201,23 @@ public class CreateFamilyMemberService {
           me.getPerson().getGender());
       newFamilyMember.addRelationship(me, childRelationshipType);
 
-      System.out.println(
-          "Please choose a relation between \"" + newFamilyMember.getPerson()
-              .getPersonId() + " " + newFamilyMember.getPerson().getFullName() + "\" and \""
-              + parent.getPerson().getPersonId() + " " + parent.getPerson().getFullName() + "\".");
-      System.out.println("Possible relations for entry: ");
-      final Map<Integer, String> options = new HashMap<>();
-      options.put(1, RelationshipType.SPOUSE.getName());
-      options.put(2, RelationshipType.UNMARRIED_PARTNER.getName());
-      options.put(3, RelationshipType.EX.getName());
-      promptUser.setOptions(options);
-      int chosenOption = promptUser.prompt();
-
-      final RelationshipType partnerRelationshipType = RelationshipType.valueOf(
-          options.get(chosenOption).toUpperCase().replace(" ", "_"));
-
-      newFamilyMember.addRelationship(parent, partnerRelationshipType);
-      parent.addRelationship(newFamilyMember, partnerRelationshipType);
+//      System.out.println(
+//          "Please choose a relation between \"" + newFamilyMember.getPerson()
+//              .getPersonId() + " " + newFamilyMember.getPerson().getFullName() + "\" and \""
+//              + parent.getPerson().getPersonId() + " " + parent.getPerson().getFullName() + "\".");
+//      System.out.println("Possible relations for entry: ");
+//      final Map<Integer, String> options = new HashMap<>();
+//      options.put(1, RelationshipType.SPOUSE.getName());
+//      options.put(2, RelationshipType.UNMARRIED_PARTNER.getName());
+//      options.put(3, RelationshipType.EX.getName());
+//      promptUser.setOptions(options);
+//      int chosenOption = promptUser.prompt();
+//
+//      final RelationshipType partnerRelationshipType = RelationshipType.valueOf(
+//          options.get(chosenOption).toUpperCase().replace(" ", "_"));
+//
+//      newFamilyMember.addRelationship(parent, partnerRelationshipType);
+//      parent.addRelationship(newFamilyMember, partnerRelationshipType);
     }
 
   }
@@ -249,7 +249,6 @@ public class CreateFamilyMemberService {
       Map<Integer, String> options = new HashMap<>();
       options.put(1, RelationshipType.SPOUSE.getName());
       options.put(2, RelationshipType.UNMARRIED_PARTNER.getName());
-      options.put(3, RelationshipType.EX.getName());
       promptUser.setOptions(options);
       System.out.println("Possible relations for entry: ");
       int chosenOption = promptUser.prompt();
@@ -331,8 +330,7 @@ public class CreateFamilyMemberService {
 
       final Gender gender;
       if (relationshipTypeForEntry.equals(RelationshipType.SPOUSE)
-          || relationshipTypeForEntry.equals(RelationshipType.UNMARRIED_PARTNER)
-          || relationshipTypeForEntry.equals(RelationshipType.EX)) {
+          || relationshipTypeForEntry.equals(RelationshipType.UNMARRIED_PARTNER)) {
         System.out.print("Enter gender (male/female): ");
         final String genderInput = scanner.nextLine();
         gender = Gender.valueOf(genderInput.toUpperCase());
