@@ -1,9 +1,10 @@
 package dev.bogdanjovanovic.tree;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FamilyMember {
+public class FamilyMember implements Serializable {
 
   private final Person person;
   private final List<Relationship> relationships;

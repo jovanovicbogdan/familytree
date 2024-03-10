@@ -6,7 +6,7 @@ Family Tree Manager is a console application developed in Java that allows users
 
 ## Features
 
-- **Load and Save Family Tree:** Users can load a family tree from a file or save the current family tree to a file for persistent storage.
+- **Load and Save Family Tree:** Users can load a family tree from a file or save the current family tree to a file for persistent storage. The family tree is serialized into bytes when saved to a file for enhanced performance.
 - **Add Family Members:** Users can add new family members to the family tree, specifying details such as name, gender, birthdate, and relationship to existing members.
 - **Edit Family Member Details:** Users can edit the details of existing family members, including their personal information and relationships.
 - **Display Family Tree:** The program provides options to display the family tree in various formats, including ancestral and descendant views.

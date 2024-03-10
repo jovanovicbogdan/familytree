@@ -1,6 +1,8 @@
 package dev.bogdanjovanovic.tree;
 
-public class Relationship {
+import java.io.Serializable;
+
+public class Relationship implements Serializable {
 
   private final FamilyMember fromFamilyMember;
   private final FamilyMember toFamilyMember;

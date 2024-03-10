@@ -1,8 +1,9 @@
 package dev.bogdanjovanovic.tree;
 
 import dev.bogdanjovanovic.utils.IdGenerator;
+import java.io.Serializable;
 
-public class Person {
+public class Person implements Serializable {
 
   private int personId;
   private String forename;

@@ -1,10 +1,11 @@
 package dev.bogdanjovanovic.tree;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class FamilyTree {
+public class FamilyTree implements Serializable {
 
   private final List<FamilyMember> familyMembers;
 
