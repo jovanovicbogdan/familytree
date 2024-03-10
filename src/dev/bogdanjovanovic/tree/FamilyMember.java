@@ -17,12 +17,12 @@ public class FamilyMember {
       final RelationshipType relationshipType) {
     this.relationships.add(new Relationship(this, toFamilyMember, relationshipType));
     System.out.println(
-        "New relation between \"" + this.getPerson().getPersonId() + " "
+        "A new relationship \"" + relationshipType.getName() + "\" has been created between \""
+            + this.getPerson()
+            .getPersonId() + " "
             + this.getPerson()
             .getFullName() + "\" and \"" + toFamilyMember.getPerson().getPersonId() + " "
-            + toFamilyMember.getPerson().getFullName() + "\" as a \""
-            + relationshipType.getName()
-            + "\" has been created.");
+            + toFamilyMember.getPerson().getFullName() + "\".");
   }
 
   public Person getPerson() {

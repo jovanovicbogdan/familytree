@@ -1,6 +1,6 @@
 package dev.bogdanjovanovic.options.handlers;
 
-import dev.bogdanjovanovic.PromptUser;
+import dev.bogdanjovanovic.utils.PromptUser;
 import dev.bogdanjovanovic.options.services.CreateFamilyMemberService;
 import dev.bogdanjovanovic.options.services.UpdateFamilyMemberService;
 import dev.bogdanjovanovic.tree.FamilyTree;

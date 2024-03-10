@@ -1,6 +1,6 @@
 package dev.bogdanjovanovic.tree;
 
-import dev.bogdanjovanovic.IdGenerator;
+import dev.bogdanjovanovic.utils.IdGenerator;
 
 public class Person {
 

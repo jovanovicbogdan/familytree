@@ -5,6 +5,7 @@ import dev.bogdanjovanovic.tree.FamilyMember;
 import dev.bogdanjovanovic.tree.FamilyTree;
 import dev.bogdanjovanovic.tree.Gender;
 import dev.bogdanjovanovic.tree.Person;
+import dev.bogdanjovanovic.utils.PromptUser;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;

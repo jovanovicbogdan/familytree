@@ -1,4 +1,4 @@
-package dev.bogdanjovanovic;
+package dev.bogdanjovanovic.utils;
 
 public class IdGenerator {
 

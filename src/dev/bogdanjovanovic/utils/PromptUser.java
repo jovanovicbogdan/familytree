@@ -1,4 +1,4 @@
-package dev.bogdanjovanovic;
+package dev.bogdanjovanovic.utils;
 
 import java.util.Map;
 import java.util.Scanner;
