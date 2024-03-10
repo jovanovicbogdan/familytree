@@ -36,4 +36,4 @@ Family Tree Manager is a console application developed in Java that allows users
 
 ## Getting Started
 
-To run the Family Tree Manager, ensure you have Java installed on your system. Download the source code and compile it using a Java compiler. Run the compiled program to start managing your family tree.
+To run the Family Tree Manager, ensure you have Java installed on your system. Download the source code and compile it using a Java compiler. Run `Main.java` to start managing your family tree.
