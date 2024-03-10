@@ -117,7 +117,7 @@ public class CreateFamilyMemberService {
               : RelationshipType.FATHER;
 
       System.out.println(
-          "There is no family member without relations relative to a person " + me.getPerson()
+          "There is no family member without relationships relative to a person " + me.getPerson()
               .getPersonId()
               + " that can be assigned relation \""
               + secondParentType.getName() + "\".");
