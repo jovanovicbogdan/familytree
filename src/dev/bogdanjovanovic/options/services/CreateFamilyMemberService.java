@@ -54,15 +54,16 @@ public class CreateFamilyMemberService {
 
       if (relationshipForEntry.equals(RelationshipType.SON) || relationshipForEntry.equals(
           RelationshipType.DAUGHTER)) {
-        // createChild();
+         createChild(me, relationshipForEntry);
       }
 
       if (relationshipForEntry.equals(RelationshipType.SPOUSE) || relationshipForEntry.equals(
           RelationshipType.UNMARRIED_PARTNER) || relationshipForEntry.equals(
           RelationshipType.EX)) {
         createPartner(me, relationshipForEntry);
-        System.out.println();
       }
+
+      System.out.println();
 
     } catch (Exception ex) {
       throw new IllegalArgumentException(ex.getMessage());
@@ -133,8 +134,6 @@ public class CreateFamilyMemberService {
               + secondParentType.getName() + "\".");
 
       createBothParents(me, secondParentType, relationshipTypeForEntry);
-
-      System.out.println();
     }
 
     if (relationshipTypes.contains(RelationshipType.MOTHER) || relationshipTypes.contains(
@@ -176,9 +175,9 @@ public class CreateFamilyMemberService {
         if (chosenOption == 1) {
           me.addRelationship(parent, relationshipTypeForEntry);
 
-          final RelationshipType childRelationship = getChildRelationshipType(
+          final RelationshipType childRelationshipType = getChildRelationshipType(
               me.getPerson().getGender());
-          parent.addRelationship(me, childRelationship);
+          parent.addRelationship(me, childRelationshipType);
         }
 
         if (chosenOption == 2) {
@@ -198,9 +197,9 @@ public class CreateFamilyMemberService {
 
       me.addRelationship(newFamilyMember, relationshipTypeForEntry);
 
-      final RelationshipType childRelationship = getChildRelationshipType(
+      final RelationshipType childRelationshipType = getChildRelationshipType(
           me.getPerson().getGender());
-      newFamilyMember.addRelationship(me, childRelationship);
+      newFamilyMember.addRelationship(me, childRelationshipType);
 
       System.out.println(
           "Please choose a relation between \"" + newFamilyMember.getPerson()
@@ -261,12 +260,12 @@ public class CreateFamilyMemberService {
       final RelationshipType parentRelationshipTypeForEntry = RelationshipType.valueOf(
           options.get(chosenOption).toUpperCase().replace(" ", "_"));
 
-      final RelationshipType childRelationship = getChildRelationshipType(
+      final RelationshipType childRelationshipType = getChildRelationshipType(
           me.getPerson().getGender());
-      newFamilyMember.addRelationship(me, childRelationship);
+      newFamilyMember.addRelationship(me, childRelationshipType);
       newFamilyMember.addRelationship(secondParent, parentRelationshipTypeForEntry);
 
-      secondParent.addRelationship(me, childRelationship);
+      secondParent.addRelationship(me, childRelationshipType);
       secondParent.addRelationship(newFamilyMember, parentRelationshipTypeForEntry);
     }
   }
@@ -281,6 +280,22 @@ public class CreateFamilyMemberService {
 
       me.addRelationship(newFamilyMember, relationshipTypeForEntry);
       newFamilyMember.addRelationship(me, relationshipTypeForEntry);
+    }
+  }
+
+  private void createChild(final FamilyMember me,
+      final RelationshipType relationshipTypeForEntry) {
+    final Optional<FamilyMember> maybeNewFamilyMember = addNewPersonToFamilyTree(
+        relationshipTypeForEntry);
+
+    if (maybeNewFamilyMember.isPresent()) {
+      final FamilyMember newFamilyMember = maybeNewFamilyMember.get();
+
+      me.addRelationship(newFamilyMember, relationshipTypeForEntry);
+
+      final RelationshipType parentRelationshipType = getParentRelationshipType(
+          me.getPerson().getGender());
+      newFamilyMember.addRelationship(me, parentRelationshipType);
     }
   }
 
@@ -361,5 +376,9 @@ public class CreateFamilyMemberService {
 
   public RelationshipType getChildRelationshipType(final Gender gender) {
     return gender.equals(Gender.MALE) ? RelationshipType.SON : RelationshipType.DAUGHTER;
+  }
+
+  public RelationshipType getParentRelationshipType(final Gender gender) {
+    return gender.equals(Gender.MALE) ? RelationshipType.FATHER : RelationshipType.MOTHER;
   }
 }
